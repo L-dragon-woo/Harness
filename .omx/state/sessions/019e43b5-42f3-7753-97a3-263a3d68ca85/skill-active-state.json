@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "active": true,
+  "skill": "deep-interview",
+  "keyword": "gather requirements",
+  "phase": "planning",
+  "activated_at": "2026-05-20T04:47:00.673Z",
+  "updated_at": "2026-05-20T05:05:05.016Z",
+  "source": "keyword-detector",
+  "session_id": "019e43b5-42f3-7753-97a3-263a3d68ca85",
+  "turn_id": "019e43b5-431f-72b2-ba06-3f7b47890922",
+  "active_skills": [
+    {
+      "skill": "deep-interview",
+      "phase": "planning",
+      "active": true,
+      "activated_at": "2026-05-20T04:47:00.673Z",
+      "updated_at": "2026-05-20T04:47:00.673Z",
+      "session_id": "019e43b5-42f3-7753-97a3-263a3d68ca85",
+      "turn_id": "019e43b5-431f-72b2-ba06-3f7b47890922"
+    }
+  ],
+  "input_lock": {
+    "active": true,
+    "scope": "deep-interview-auto-approval",
+    "acquired_at": "2026-05-20T04:47:00.673Z",
+    "blocked_inputs": [
+      "yes",
+      "y",
+      "proceed",
+      "continue",
+      "ok",
+      "sure",
+      "go ahead",
+      "next i should"
+    ],
+    "message": "Deep interview is active; auto-approval shortcuts are blocked until the interview finishes."
+  },
+  "initialized_mode": "deep-interview",
+  "initialized_state_path": ".omx/state/sessions/019e43b5-42f3-7753-97a3-263a3d68ca85/deep-interview-state.json"
+}

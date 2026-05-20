@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "active": true,
+  "skill": "deep-interview",
+  "keyword": "ouroboros",
+  "phase": "planning",
+  "activated_at": "2026-05-20T04:49:12.758Z",
+  "updated_at": "2026-05-20T05:05:05.016Z",
+  "source": "keyword-detector",
+  "session_id": "019e438d-57d2-71a0-9cd7-b52fe63ac59d",
+  "turn_id": "019e43b7-5c76-7771-9609-e6c163ffaa80",
+  "active_skills": [
+    {
+      "skill": "deep-interview",
+      "phase": "planning",
+      "active": true,
+      "activated_at": "2026-05-20T04:49:12.758Z",
+      "updated_at": "2026-05-20T04:49:12.758Z",
+      "session_id": "019e438d-57d2-71a0-9cd7-b52fe63ac59d",
+      "turn_id": "019e43b7-5c76-7771-9609-e6c163ffaa80"
+    }
+  ],
+  "input_lock": {
+    "active": true,
+    "scope": "deep-interview-auto-approval",
+    "acquired_at": "2026-05-20T04:49:12.758Z",
+    "blocked_inputs": [
+      "yes",
+      "y",
+      "proceed",
+      "continue",
+      "ok",
+      "sure",
+      "go ahead",
+      "next i should"
+    ],
+    "message": "Deep interview is active; auto-approval shortcuts are blocked until the interview finishes."
+  },
+  "initialized_mode": "deep-interview",
+  "initialized_state_path": ".omx/state/sessions/019e438d-57d2-71a0-9cd7-b52fe63ac59d/deep-interview-state.json"
+}

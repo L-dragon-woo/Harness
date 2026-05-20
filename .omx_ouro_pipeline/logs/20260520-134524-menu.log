@@ -1,0 +1,43 @@
+== 환경 점검 ==
+작업 폴더: C:\Users\qhtm0\Desktop\harness
+설정 파일: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\config.json
+로그 폴더: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\logs
+UV_CACHE_DIR: C:\Users\qhtm0\Desktop\harness\.uv-cache
+OMX 명령: C:\Users\qhtm0\.local\bin\omx.CMD
+Ouroboros 폴더: C:\Users\qhtm0\Desktop\harness\ouroboros
+OK: 기본 실행 경로를 찾았습니다.
+
+$ uv run --project C:\Users\qhtm0\Desktop\harness\ouroboros ouroboros --help
+  cwd: C:\Users\qhtm0\Desktop\harness
+                                                                               
+ Usage: ouroboros [OPTIONS] COMMAND [ARGS]...                                  
+                                                                               
+ Ouroboros - Self-Improving AI Workflow System                                 
+                                                                               
++- Options -------------------------------------------------------------------+
+| --version             -V        Show version and exit.                      |
+| --install-completion            Install completion for the current shell.   |
+| --show-completion               Show completion for the current shell, to   |
+|                                 copy it or customize the installation.      |
+| --help                          Show this message and exit.                 |
++-----------------------------------------------------------------------------+
++- Commands ------------------------------------------------------------------+
+| auto         Run bounded full-quality ooo auto pipeline.                    |
+| init         Start interactive interview to refine requirements.            |
+| run          Execute Ouroboros workflows.                                   |
+| config       Manage Ouroboros configuration.                                |
+| status       Check Ouroboros system status.                                 |
+| cancel       Cancel stuck or orphaned executions.                           |
+| codex        Manage Ouroboros Codex CLI integration artifacts.              |
+| mcp          MCP (Model Context Protocol) server commands.                  |
+| setup        Set up Ouroboros for your environment.                         |
+| detect       Generate .ouroboros/mechanical.toml via one AI call.           |
+| tui          Interactive TUI monitor for Ouroboros workflows.               |
+| pm           Generate a Product Requirements Document through guided        |
+|              interview.                                                     |
+| plugin       Manage UserLevel plugins (#725).                               |
+| resume       List in-flight sessions and re-attach after MCP disconnect.    |
+| uninstall    Cleanly remove Ouroboros from your system.                     |
+| workflow-ir  Inspect read-only Workflow IR projections.                     |
++-----------------------------------------------------------------------------+
+

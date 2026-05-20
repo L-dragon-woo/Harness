@@ -1,0 +1,30 @@
+OMX + Ouroboros 개인 런처
+
+가장 짧은 사용법:
+  oo "작업 목표"
+
+자주 쓰는 명령:
+  oo go "작업 목표"          전체 파이프라인 실행
+  oo seed "작업 목표"        Ouroboros Seed만 생성
+  oo omx "작업 목표"         OMX Ralph만 실행
+  oo status                  최근 상태와 OMX 상태 확인
+  oo doctor                  환경 점검
+  oo help                    이 도움말 표시
+
+옵션:
+  --cwd "폴더"               작업 대상 폴더 지정
+  --dry-run                  실제 실행 없이 실행될 명령만 확인
+
+예시:
+  oo "README 정리하고 테스트 실행"
+  oo go "로그인 기능 추가" --cwd "C:\my-project"
+  oo seed "결제 기능 요구사항 정리"
+  oo omx "방금 만든 Seed 기준으로 구현"
+
+기존 긴 명령도 계속 사용 가능:
+  run_omx_ouro_pipeline.cmd run --goal "작업 목표"
+
+설정/로그:
+  설정: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\config.json
+  로그: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\logs
+

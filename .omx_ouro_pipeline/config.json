@@ -1,0 +1,15 @@
+{
+  "workspace": "C:\\Users\\qhtm0\\Desktop\\harness",
+  "target_cwd": "C:\\Users\\qhtm0\\Desktop\\harness",
+  "ouroboros_dir": "C:\\Users\\qhtm0\\Desktop\\harness\\ouroboros",
+  "ouroboros_runtime": "codex",
+  "max_interview_rounds": 8,
+  "continue_on_ouroboros_blocked": true,
+  "omx_command": "C:\\Users\\qhtm0\\.local\\bin\\omx.CMD",
+  "omx_mode": "codex",
+  "uv_cache_dir": "C:\\Users\\qhtm0\\Desktop\\harness\\.uv-cache",
+  "seed_search_dirs": [
+    ".ouroboros/seeds",
+    "C:\\Users\\qhtm0\\Desktop\\harness\\ouroboros\\.ouroboros\\seeds"
+  ]
+}

@@ -1,0 +1,6 @@
+{"timestamp":"2026-05-20T04:04:25.303Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Unterminated string in JSON at position 513 (line 1 column 514)"}
+{"timestamp":"2026-05-20T04:25:01.485Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Expected ',' or '}' after property value in JSON at position 1395 (line 1 column 1396)"}
+{"timestamp":"2026-05-20T04:30:03.643Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Expected ',' or '}' after property value in JSON at position 891 (line 1 column 892)"}
+{"timestamp":"2026-05-20T04:30:50.153Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Expected ',' or '}' after property value in JSON at position 1277 (line 1 column 1278)"}
+{"timestamp":"2026-05-20T04:58:45.550Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Expected ',' or '}' after property value in JSON at position 919 (line 1 column 920)"}
+{"timestamp":"2026-05-20T04:58:48.897Z","type":"native_hook_stdin_parse_error","hook_event_name":"Unknown","error":"Expected ',' or '}' after property value in JSON at position 920 (line 1 column 921)"}

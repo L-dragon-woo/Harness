@@ -1,0 +1,15 @@
+﻿{
+    "active":  false,
+    "phase":  "codex:no_cmd_mode_implemented",
+    "updated_at":  "2026-05-20T14:32:14",
+    "no_cmd_mode":  {
+                        "enabled":  true,
+                        "omx_mode":  "codex",
+                        "behavior":  "OMX step writes a Codex-native handoff file instead of launching omx ralph/exec in CMD or tmux",
+                        "changed_files":  [
+                                              "omx_ouro_pipeline.py",
+                                              "README_omx_ouro_pipeline.md",
+                                              ".omx_ouro_pipeline/config.json"
+                                          ]
+                    }
+}

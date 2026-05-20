@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "active": false,
+  "skill": "ralph",
+  "keyword": "",
+  "phase": "inactive",
+  "activated_at": "2026-05-20T05:05:04.968Z",
+  "updated_at": "2026-05-20T05:13:37.196Z",
+  "source": "startMode",
+  "active_skills": [],
+  "reconciled_at": "2026-05-20T05:13:37.196Z",
+  "reconciliation_reason": "stop_hook_session_state_terminal"
+}

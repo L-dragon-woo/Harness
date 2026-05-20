@@ -1,0 +1,7 @@
+﻿omx_ouro_pipeline.py
+README_omx_ouro_pipeline.md
+.omx_ouro_pipeline/config.json
+.omx_ouro_pipeline/state.json
+src/ouroboros/orchestrator/parallel_executor.py
+tests/unit/orchestrator/test_parallel_executor_recursive_depth.py
+tests/unit/cli/test_run_qa.py

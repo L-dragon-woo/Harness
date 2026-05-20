@@ -1,0 +1,120 @@
+﻿{
+    "active":  true,
+    "mode":  "ralph",
+    "iteration":  0,
+    "max_iterations":  50,
+    "task_description":  "Read and execute this local OMX/Ouroboros pipeline prompt: C:\\Users\\qhtm0\\Desktop\\harness\\.omx_ouro_pipeline\\prompts\\20260520-140012-omx-prompt.md",
+    "started_at":  "2026-05-20T05:05:04.963Z",
+    "canonical_progress_path":  "C:\\Users\\qhtm0\\Desktop\\harness\\.omx\\state\\ralph-progress.json",
+    "available_agent_types":  [
+                                  "analyst",
+                                  "api-reviewer",
+                                  "architect",
+                                  "build-fixer",
+                                  "code-reviewer",
+                                  "code-simplifier",
+                                  "critic",
+                                  "debugger",
+                                  "dependency-expert",
+                                  "designer",
+                                  "executor",
+                                  "explore",
+                                  "explore-harness",
+                                  "git-master",
+                                  "information-architect",
+                                  "performance-reviewer",
+                                  "planner",
+                                  "product-analyst",
+                                  "product-manager",
+                                  "qa-tester",
+                                  "quality-reviewer",
+                                  "quality-strategist",
+                                  "researcher",
+                                  "security-reviewer",
+                                  "sisyphus-lite",
+                                  "style-reviewer",
+                                  "team-executor",
+                                  "team-orchestrator",
+                                  "test-engineer",
+                                  "ux-researcher",
+                                  "verifier",
+                                  "vision",
+                                  "writer"
+                              ],
+    "staffing_summary":  "executor x1 (primary implementation lane, medium reasoning); test-engineer x1 (evidence + regression checks, medium reasoning); architect x1 (final architecture / completion sign-off, high reasoning)",
+    "staffing_allocations":  [
+                                 {
+                                     "role":  "executor",
+                                     "count":  1,
+                                     "reason":  "primary implementation lane",
+                                     "reasoningEffort":  "medium"
+                                 },
+                                 {
+                                     "role":  "test-engineer",
+                                     "count":  1,
+                                     "reason":  "evidence + regression checks",
+                                     "reasoningEffort":  "medium"
+                                 },
+                                 {
+                                     "role":  "architect",
+                                     "count":  1,
+                                     "reason":  "final architecture / completion sign-off",
+                                     "reasoningEffort":  "high"
+                                 }
+                             ],
+    "native_subagents_enabled":  true,
+    "native_subagent_tracking_path":  ".omx/state/subagent-tracking.json",
+    "native_subagent_policy":  "Parallel Codex subagents are allowed for independent work, but phase completion must wait for active native subagent threads to finish.",
+    "goal_mode_integration":  "codex-goal-tools",
+    "goal_mode_policy":  "Use get_goal for active objective discovery and update_goal only after a prompt-to-artifact completion audit proves the objective is achieved.",
+    "deslop_enabled":  true,
+    "deslop_opt_out":  false,
+    "deslop_changed_files_path":  ".omx/ralph/changed-files.txt",
+    "deslop_scope":  "changed-files-only",
+    "approved_test_spec_paths":  [
+
+                                 ],
+    "approved_deep_interview_spec_paths":  [
+
+                                           ],
+    "completion_audit":  {
+                             "passed":  true,
+                             "prompt_to_artifact_checklist":  [
+                                                                  {
+                                                                      "requirement":  "Avoid forcing user into separate terminal shell",
+                                                                      "artifact":  "omx_ouro_pipeline.py supports omx_mode codex/native/handoff and returns after writing Codex handoff instead of run_omx_cmd",
+                                                                      "status":  "passed"
+                                                                  },
+                                                                  {
+                                                                      "requirement":  "Make no-terminal behavior default for this harness",
+                                                                      "artifact":  ".omx_ouro_pipeline/config.json has omx_mode codex; default_config uses codex for new configs",
+                                                                      "status":  "passed"
+                                                                  },
+                                                                  {
+                                                                      "requirement":  "Tell Codex how to execute without terminal-only OMX surfaces",
+                                                                      "artifact":  "write_codex_handoff_prompt creates codex_handoffs/*.md with native execution instructions",
+                                                                      "status":  "passed"
+                                                                  },
+                                                                  {
+                                                                      "requirement":  "Document usage",
+                                                                      "artifact":  "README_omx_ouro_pipeline.md No-CMD / Codex-native mode section",
+                                                                      "status":  "passed"
+                                                                  },
+                                                                  {
+                                                                      "requirement":  "Post-cleaner verification",
+                                                                      "artifact":  "py_compile passed; Ouroboros targeted pytest 58 passed; ruff passed",
+                                                                      "status":  "passed"
+                                                                  }
+                                                              ],
+                             "verification_evidence":  [
+                                                           "python -m py_compile omx_ouro_pipeline.py -\u003e pass",
+                                                           "python omx_ouro_pipeline.py help -\u003e pass and displays No-CMD mode",
+                                                           "python omx_ouro_pipeline.py omx test-handoff --dry-run -\u003e generated Codex handoff and did not launch OMX shell",
+                                                           "python -m pytest targeted Ouroboros suite -\u003e 58 passed",
+                                                           "ruff check scoped Ouroboros files -\u003e All checks passed",
+                                                           "fallback/slop signal search over current harness files -\u003e no findings"
+                                                       ]
+                         },
+    "current_phase":  "completed",
+    "run_outcome":  "success"
+}

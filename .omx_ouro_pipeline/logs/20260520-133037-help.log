@@ -1,0 +1,30 @@
+OMX + Ouroboros personal launcher
+
+Shortest usage:
+  oo "your task goal"
+
+Commands:
+  oo go "goal"       Run full pipeline: Ouroboros Seed -> OMX Ralph
+  oo seed "goal"     Create Ouroboros Seed only
+  oo omx "goal"      Run OMX Ralph only
+  oo status             Show last saved state and OMX status
+  oo doctor             Check local environment
+  oo help               Show this help
+
+Options:
+  --cwd "folder"      Target project folder
+  --dry-run             Print commands without executing
+
+Examples:
+  oo "clean README and run tests"
+  oo go "add login feature" --cwd "C:\my-project"
+  oo seed "write requirements for payment feature"
+  oo omx "implement from latest Seed"
+
+Old long command still works:
+  run_omx_ouro_pipeline.cmd run --goal "goal"
+
+Config/logs:
+  config: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\config.json
+  logs:   C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\logs
+
