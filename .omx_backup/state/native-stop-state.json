@@ -431,6 +431,156 @@
         "last_turn_id": "019e43d5-49d1-7022-bcba-cfc53626a80a",
         "last_thread_id": null
       }
+    },
+    "019e48c0-2d11-7822-acab-a9c6ca6f95dc": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|현재 “harness 때문에 일반 codex 기능을 못 쓴다”는 게 구체적으로 어떤 증상인가요: codex 명령이 harness 프로젝트 안에서만 실행되는 문제인지, 특정 설정/프롬프트가 강제로 주입되는 문제인지, 아니면 로컬 codex와 harness 코드/환경을 완전히 분리하고 싶은 요구인가요?",
+        "first_seen_at": "2026-05-21T04:17:09.159Z",
+        "last_seen_at": "2026-05-21T04:17:09.159Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c0-2d46-7e02-ae01-d4ceeb494b1f",
+        "last_thread_id": null
+      }
+    },
+    "019e48c0-6fa9-7d23-928e-40dcf374890e": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|mvp 기준으로 “분리 완료”를 어떻게 확인하면 되나요: 예를 들어 `codex`를 실행했을 때 harness 설정/프롬프트/작업디렉터리 영향 없이 일반 codex처럼 동작하는 것, 별도 명령이나 별도 폴더에서 실행되는 것, 또는 harness 기능을 끄는 설정 스위치가 생기는 것 중 무엇이 핵심인가요?",
+        "first_seen_at": "2026-05-21T04:17:26.493Z",
+        "last_seen_at": "2026-05-21T04:17:26.493Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c0-6fde-7920-a4ac-29a2994e8b5b",
+        "last_thread_id": null
+      }
+    },
+    "019e48c0-b34a-72d0-b445-87cc0d96a2db": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|현재 실패를 재현하는 최소 명령과 기대/실제 출력은 무엇인가요? 예: 어느 폴더에서 어떤 `codex ...` 명령을 실행하면 harness 영향이 나타나고, 분리 후에는 같은 명령이 어떤 안정적인 출력이나 동작을 보여야 하나요?",
+        "first_seen_at": "2026-05-21T04:17:43.946Z",
+        "last_seen_at": "2026-05-21T04:17:43.946Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c0-b384-7ab3-a3d5-96a2e877a8de",
+        "last_thread_id": null
+      }
+    },
+    "019e48c0-f774-78e2-a464-ba34abb28dab": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.35,\"goal_clarity_justification\":\"the initial goal says to separate local codex from harness because harness prevents normal codex functionality, but the actual symptom and desired separation mode are not specified. follow-up answers are generic defaults rather than concrete clarifications, so the goal remains only partially defined.\",\"constraint_clarity_score\":0.25,\"constraint_clarity_justification\":\"constraints are mostly generic: keep scope small, prefer existing patterns, single local user, explicit command/api inputs and outputs. there is no clear information about environment boundaries, files/settings that may be changed, compatibility requirements, or what must remain unaffected.\",\"success_criteria_clarity_score\":0.3,\"success_criteria_clarity_justification\":\"the conversation asks for observable verification, stable output, non-zero failures for invalid input, and reproducible artifacts, but it never gives a specific command, expected output, failing scenario, or measurable before/after behavior. success is directionally measurable but not concretely testable.\"}",
+        "first_seen_at": "2026-05-21T04:18:02.527Z",
+        "last_seen_at": "2026-05-21T04:18:02.527Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c0-f7a8-71a1-b65d-5a98ef506605",
+        "last_thread_id": null
+      }
+    },
+    "019e48c1-3fc9-7b00-a6f9-22f4e86098d3": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|분리 작업에서 변경해도 되는 경계와 건드리면 안 되는 경계를 정해야 합니다: `c:\\users\\qhtm0\\desktop\\harness` 안의 설정/스크립트만 바꿔도 되나요, 아니면 사용자 홈의 codex 설정(`.codex`, 환경변수, path, alias/프로필 등)까지 수정해도 되나요?",
+        "first_seen_at": "2026-05-21T04:18:19.824Z",
+        "last_seen_at": "2026-05-21T04:18:19.824Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c1-4004-7d42-a42e-8d6584df0c3e",
+        "last_thread_id": null
+      }
+    },
+    "019e48c1-83d9-74d0-a9a6-923440d01c37": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.35,\"goal_clarity_justification\":\"the high-level intent is understandable: separate local codex usage from the harness so normal codex functionality is usable. however, the specific failure mode is not identified, and the auto-generated answers do not clarify whether the issue is working directory binding, forced prompt/config injection, environment variables, path/alias behavior, or a desired architectural separation.\",\"constraint_clarity_score\":0.2,\"constraint_clarity_justification\":\"constraints are mostly absent. the conversation explicitly asks what boundaries can be changed, such as the harness project, user codex config, environment variables, path, aliases, or shell profile, but the answer does not resolve that boundary. only generic non-goals are stated, which do not meaningfully constrain the actual local separation work.\",\"success_criteria_clarity_score\":0.25,\"success_criteria_clarity_justification\":\"success is described only generically as observable behavior, stable output, and reproducible artifacts. there is no concrete command, starting directory, expected current behavior, expected post-fix behavior, or testable artifact. the criteria are directionally measurable but not specific enough to verify completion without making major assumptions.\"}",
+        "first_seen_at": "2026-05-21T04:18:39.482Z",
+        "last_seen_at": "2026-05-21T04:18:39.482Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c1-8408-7670-b106-a5b77ca1353b",
+        "last_thread_id": null
+      }
+    },
+    "019e48c1-cfe6-7c03-8f06-52c509ea5c6f": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|분리 mvp에서 실제로 허용되는 변경 범위를 하나로 골라주세요: **harness 폴더 내부만 수정**, **사용자 codex 설정까지 수정 가능**, **환경변수/path/powershell 프로필까지 수정 가능** 중 어디까지 허용되며, 분리 후 검증할 대표 명령은 어느 폴더에서 실행하는 `codex ...` 명령이어야 하나요?",
+        "first_seen_at": "2026-05-21T04:18:54.605Z",
+        "last_seen_at": "2026-05-21T04:18:54.605Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c1-d016-7d60-a042-1225be0b565d",
+        "last_thread_id": null
+      }
+    },
+    "019e48c2-0b68-7831-9ea9-0439cb28e818": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.35,\"goal_clarity_justification\":\"the broad intent is understandable: separate local codex usage from the harness so normal codex functionality is no longer affected. however, the actual symptom, desired separation model, and target behavior remain unspecified because the answers are generic auto defaults rather than concrete choices.\",\"constraint_clarity_score\":0.25,\"constraint_clarity_justification\":\"some inferred constraints exist, such as conservative mvp scope and avoiding unrelated cloud/auth/deployment work, but the critical implementation boundary is unanswered: whether changes may touch only the harness directory, user codex config, environment variables, path, or shell profile.\",\"success_criteria_clarity_score\":0.3,\"success_criteria_clarity_justification\":\"the conversation asks for observable verification and stable command output, but no concrete reproduction command, expected output, actual output, or representative post-fix command is provided. success is directionally testable but not yet measurable enough to verify completion confidently.\"}",
+        "first_seen_at": "2026-05-21T04:19:12.141Z",
+        "last_seen_at": "2026-05-21T04:19:12.141Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c2-0b98-7d41-887d-7ae0b404cfaa",
+        "last_thread_id": null
+      }
+    },
+    "019e48c2-5432-77f0-a758-181117402bad": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|변경 범위가 아직 선택되지 않았습니다: 제가 보수적 mvp로 **`c:\\users\\qhtm0\\desktop\\harness` 내부만 수정**하고, 검증은 그 밖의 임의 폴더에서 `codex`를 실행했을 때 harness 영향이 없는지 확인하는 방식으로 진행해도 될까요?",
+        "first_seen_at": "2026-05-21T04:19:30.816Z",
+        "last_seen_at": "2026-05-21T04:19:30.816Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c2-546f-78d1-b708-b4f6d2380dae",
+        "last_thread_id": null
+      }
+    },
+    "019e48c2-9906-71e3-96df-c8078b9b578b": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.25,\"goal_clarity_justification\":\"the broad intent is identifiable: separate local codex behavior from the harness so normal codex functionality is usable. however, the concrete symptom, affected command path, desired separation model, and final behavior are not specified because the answers are generic auto-generated defaults rather than clarifications.\",\"constraint_clarity_score\":0.2,\"constraint_clarity_justification\":\"potential boundaries are raised, including whether changes may be limited to the harness folder or extend to user codex config, environment variables, path, or powershell profile. no actual boundary is chosen, and non-goals are generic rather than tailored to the problem.\",\"success_criteria_clarity_score\":0.2,\"success_criteria_clarity_justification\":\"the conversation asks for observable verification, but no specific command, working directory, expected output, before-and-after behavior, or testable artifact is defined. the success criteria remain abstract and not measurable enough to verify completion.\"}",
+        "first_seen_at": "2026-05-21T04:19:49.433Z",
+        "last_seen_at": "2026-05-21T04:19:49.433Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c2-9938-7572-a62b-a19680292496",
+        "last_thread_id": null
+      }
+    },
+    "019e48c2-e17e-7653-82bf-908a24609ace": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|보수적 mvp의 기본값을 확정해도 되나요: **`c:\\users\\qhtm0\\desktop\\harness` 내부만 수정하고**, 성공 검증은 **harness 밖의 새/임의 폴더에서 `codex`를 실행했을 때 harness 전용 프롬프트·설정·작업디렉터리 영향이 나타나지 않는 것**으로 삼겠습니다. 이 기준이 맞나요, 아니면 반드시 포함해야 할 다른 실행 명령이나 검증 위치가 있나요?",
+        "first_seen_at": "2026-05-21T04:20:09.662Z",
+        "last_seen_at": "2026-05-21T04:20:09.662Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c2-e1b6-7aa3-983a-fed70291b941",
+        "last_thread_id": null
+      }
+    },
+    "019e48c3-30be-7ff3-a434-2af0125e45e2": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.62,\"goal_clarity_justification\":\"the broad goal is understandable: separate local codex usage from the harness so normal codex behavior is not affected. however, the concrete failure mode is not actually answered; the responses are generic auto defaults rather than specific symptoms, commands, or expected behavior. a conservative mvp goal is inferred but not strongly confirmed by the requester.\",\"constraint_clarity_score\":0.55,\"constraint_clarity_justification\":\"some constraints are implied, especially a conservative mvp and a likely boundary of modifying only c:\\\\users\\\\qhtm0\\\\desktop\\\\harness. non-goals such as cloud sync, paid services, authentication, and production deployment are stated. but the key modification boundary is never explicitly selected by the user, and permissions around user-level codex config, environment variables, path, and powershell profile remain unresolved.\",\"success_criteria_clarity_score\":0.58,\"success_criteria_clarity_justification\":\"the intended success criterion is partly observable: run codex outside the harness folder and verify that harness-specific prompts, settings, or working-directory effects do not appear. however, no exact reproduction command, expected output, actual output, test command, or stable pass/fail signal is provided. the criteria are directionally measurable but not specific enough for a high clarity score.\"}",
+        "first_seen_at": "2026-05-21T04:20:28.445Z",
+        "last_seen_at": "2026-05-21T04:20:28.445Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c3-30eb-7941-8950-3bd52e1fcb3b",
+        "last_thread_id": null
+      }
+    },
+    "019e48c3-7c00-7132-a28b-4218dde40c7e": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|실행에 들어가기 전에 마지막으로 하나만 확정해주세요: 지금 답변들이 자동 기본값처럼 보이는데, 실제 사용자 결정으로 **`c:\\users\\qhtm0\\desktop\\harness` 내부만 수정**하고 **harness 밖 폴더에서 `codex` 실행 시 harness 영향이 없어야 한다**는 기준을 승인하나요? 승인한다면 `[from-user] 승인`이라고 답해주세요.",
+        "first_seen_at": "2026-05-21T04:20:49.265Z",
+        "last_seen_at": "2026-05-21T04:20:49.265Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c3-7c39-78a2-88cc-c8b0a9b56300",
+        "last_thread_id": null
+      }
+    },
+    "019e48c3-cb6e-7651-9448-8cc09eafa342": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|{\"goal_clarity_score\":0.35,\"goal_clarity_justification\":\"the broad intent is understandable: separate local codex behavior from the harness so normal codex use is no longer affected. however, the actual symptom is never confirmed by the user, and the conversation relies almost entirely on automatic conservative defaults rather than concrete user decisions. it remains unclear whether the issue is working directory binding, injected prompts, config contamination, environment variables, aliases, path, or something else.\",\"constraint_clarity_score\":0.25,\"constraint_clarity_justification\":\"some possible constraints are proposed, especially limiting changes to c:\\\\users\\\\qhtm0\\\\desktop\\\\harness and avoiding home codex settings, path, aliases, or powershell profile changes. but these boundaries are never explicitly approved by the user. the listed non-goals are generic auto-generated defaults and do not materially clarify the actual modification limits for this task.\",\"success_criteria_clarity_score\":0.4,\"success_criteria_clarity_justification\":\"there is a plausible success direction: running codex from a folder outside harness should not show harness-specific prompt, settings, or working-directory influence. this is observable in principle, but the exact representative command, expected output, failure reproduction, and objective definition of 'harness influence' are not specified. the criteria are not yet specific enough to be reliably tested without additional assumptions.\"}",
+        "first_seen_at": "2026-05-21T04:21:10.884Z",
+        "last_seen_at": "2026-05-21T04:21:10.884Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c3-cba5-7de1-8cf6-8c0f191b84e9",
+        "last_thread_id": null
+      }
+    },
+    "019e48c4-2061-7a03-aaa0-f24d393851cd": {
+      "ordinary_no_progress_guard": {
+        "fingerprint": "ordinary|자동 답변으로는 승인 여부를 확정할 수 없습니다. 실제 사용자 결정으로 하나만 답해주세요: **`c:\\users\\qhtm0\\desktop\\harness` 내부만 수정하고, harness 밖 폴더에서 `codex` 실행 시 harness 영향이 없어야 한다**는 기준으로 진행해도 되나요? `[from-user] 승인` 또는 `[from-user] 변경 범위: ...` 형식으로 답해주세요.",
+        "first_seen_at": "2026-05-21T04:21:28.688Z",
+        "last_seen_at": "2026-05-21T04:21:28.688Z",
+        "repeat_count": 1,
+        "last_turn_id": "019e48c4-2099-7fa3-aea0-d6b200abea9c",
+        "last_thread_id": null
+      }
     }
   }
 }

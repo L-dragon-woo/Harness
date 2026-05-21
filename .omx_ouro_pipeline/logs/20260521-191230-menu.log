@@ -1,0 +1,8 @@
+== OMX + Ouroboros 개인 파이프라인 ==
+목표: 현재 다른 파일을 visual code에서 codex를 사용하려고 하면 자꾸 요약하면 Codex 내부 응답 큐가 과부하되어(App Server Transport Overflow) 메시지를 계속 버리고 있고, 동시에 플러그인 설정 경고가 반복되는 상황이 계속되고 있는데이 부분을 고쳐줘
+실행 ID: 20260521-191239
+기존 최신 Seed 사용: C:\Users\qhtm0\Desktop\harness\ouroboros\.ouroboros\seeds\seed_73827177a2a3.yaml
+
+Codex-native handoff ready.
+No CMD/tmux OMX shell was launched.
+Ask Codex to read and execute: C:\Users\qhtm0\Desktop\harness\.omx_ouro_pipeline\codex_handoffs\20260521-191239-codex-handoff.md
