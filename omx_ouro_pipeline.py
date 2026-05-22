@@ -34,6 +34,9 @@ CONFIG_PATH = APP_DIR / "config.json"
 DEFAULT_OMX_CMD = Path.home() / ".local" / "bin" / "omx.cmd"
 DEFAULT_OUROBOROS_DIR = ROOT / "ouroboros"
 DEFAULT_UV_CACHE = ROOT / ".uv-cache"
+CODEX_HOME = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")).expanduser()
+CODEX_CONFIG_PATH = CODEX_HOME / "config.toml"
+CODEX_TMP_DIR = CODEX_HOME / ".tmp"
 
 try:
     # Windows Korean consoles often default to cp949; Seed previews may contain
@@ -83,6 +86,7 @@ def default_config() -> dict:
         # Codex surface without opening or attaching to a separate CMD/tmux OMX
         # shell. Set this to "ralph" or "exec" to launch the OMX CLI directly.
         "omx_mode": "codex",
+        "codex_app_safety_guard": True,
         "uv_cache_dir": str(DEFAULT_UV_CACHE),
         "seed_search_dirs": [
             ".ouroboros/seeds",
@@ -104,6 +108,7 @@ def load_config() -> dict:
     except Exception:
         cfg["max_interview_rounds"] = 8
     cfg.setdefault("continue_on_ouroboros_blocked", True)
+    cfg.setdefault("codex_app_safety_guard", True)
     if not CONFIG_PATH.exists() or cfg != existing:
         write_json(CONFIG_PATH, cfg)
     return cfg
@@ -163,6 +168,71 @@ def merged_env(cfg: dict) -> dict:
     ouro_src = Path(cfg["ouroboros_dir"]).expanduser() / "src"
     env["PYTHONPATH"] = str(ouro_src) + os.pathsep + env.get("PYTHONPATH", "")
     return env
+
+
+def _set_toml_feature_bool(text: str, name: str, value: bool) -> str:
+    lines = text.splitlines()
+    out: list[str] = []
+    in_features = False
+    seen_features = False
+    seen_name = False
+    desired = f"{name} = {'true' if value else 'false'}"
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            if in_features and not seen_name:
+                out.append(desired)
+                seen_name = True
+            in_features = stripped == "[features]"
+            seen_features = seen_features or in_features
+            out.append(line)
+            continue
+        if in_features and stripped.split("=", 1)[0].strip() == name and "=" in stripped:
+            if seen_name:
+                continue
+            out.append(desired)
+            seen_name = True
+            continue
+        out.append(line)
+
+    if in_features and not seen_name:
+        out.append(desired)
+        seen_name = True
+    if not seen_features:
+        if out and out[-1].strip():
+            out.append("")
+        out.extend(["[features]", desired])
+    return "\n".join(out).rstrip() + "\n"
+
+
+def ensure_codex_app_safety(log: Logger, *, dry_run: bool = False) -> None:
+    """Keep the VS Code/Codex app from loading noisy plugin and hook surfaces."""
+    CODEX_HOME.mkdir(parents=True, exist_ok=True)
+    original = CODEX_CONFIG_PATH.read_text(encoding="utf-8") if CODEX_CONFIG_PATH.exists() else ""
+    next_text = original
+    for feature in ("plugins", "hooks"):
+        next_text = _set_toml_feature_bool(next_text, feature, False)
+    if next_text != original:
+        if dry_run:
+            log.line(f"[codex-safety] Would update {CODEX_CONFIG_PATH}: plugins=false, hooks=false")
+        else:
+            CODEX_CONFIG_PATH.write_text(next_text, encoding="utf-8")
+            log.line(f"[codex-safety] Updated {CODEX_CONFIG_PATH}: plugins=false, hooks=false")
+    else:
+        log.line("[codex-safety] Codex plugins/hooks already disabled.")
+
+    stamp = now_id()
+    for name in ("plugins", "plugins.sha"):
+        path = CODEX_TMP_DIR / name
+        if not path.exists():
+            continue
+        disabled = CODEX_TMP_DIR / f".{name}.disabled-{stamp}"
+        if dry_run:
+            log.line(f"[codex-safety] Would move {path} -> {disabled}")
+        else:
+            shutil.move(str(path), str(disabled))
+            log.line(f"[codex-safety] Moved {path} -> {disabled}")
 
 
 def run_command(
@@ -334,6 +404,9 @@ def doctor(cfg: dict, *, log: Logger, dry_run: bool = False) -> int:
     log.line(f"OMX 명령: {cfg['omx_command']}")
     log.line(f"Ouroboros 폴더: {cfg['ouroboros_dir']}")
 
+    if cfg.get("codex_app_safety_guard", True):
+        ensure_codex_app_safety(log, dry_run=dry_run)
+
     problems = 0
     if not target.exists():
         log.line("!! target_cwd가 없습니다.")
@@ -385,6 +458,9 @@ def run_pipeline(
     log.line("== OMX + Ouroboros 개인 파이프라인 ==")
     log.line(f"목표: {goal}")
     log.line(f"실행 ID: {run_id}")
+
+    if cfg.get("codex_app_safety_guard", True):
+        ensure_codex_app_safety(log, dry_run=dry_run)
 
     seed_path: Path | None = None
     if not skip_seed:

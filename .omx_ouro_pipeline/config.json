@@ -7,6 +7,7 @@
   "continue_on_ouroboros_blocked": true,
   "omx_command": "C:\\Users\\qhtm0\\.local\\bin\\omx.CMD",
   "omx_mode": "codex",
+  "codex_app_safety_guard": true,
   "uv_cache_dir": "C:\\Users\\qhtm0\\Desktop\\harness\\.uv-cache",
   "seed_search_dirs": [
     ".ouroboros/seeds",

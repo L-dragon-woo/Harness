@@ -117,6 +117,10 @@ oo doctor
 
 - `UV_CACHE_DIR` defaults to local `.uv-cache` to reduce Windows permission issues.
 - Default OMX mode for new configs is `"codex"` handoff mode.
+- Before every pipeline/doctor run, `"codex_app_safety_guard": true` keeps
+  Codex App plugin and hook loading disabled and quarantines any temporary
+  `.codex\.tmp\plugins` cache. This prevents repeated plugin manifest warnings
+  from flooding the VS Code/Codex app transport.
 - Change `.omx_ouro_pipeline\config.json` `"omx_mode"` to `"ralph"` or `"exec"` if you prefer direct OMX CLI execution.
 - If `ouroboros auto` is `blocked` and no closed Seed is produced, the launcher now continues to OMX with the original goal by default. Set `"continue_on_ouroboros_blocked": false` in config for strict failure behavior.
 - The launcher uses at least 8 Ouroboros interview rounds by default to reduce premature safe-default blocking.

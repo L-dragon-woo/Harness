@@ -1,13 +1,13 @@
 {
-  "run_id": "20260521-191239",
+  "run_id": "20260521-194159",
   "active": false,
   "phase": "codex:handoff_ready",
-  "goal": "현재 다른 파일을 visual code에서 codex를 사용하려고 하면 자꾸 요약하면 Codex 내부 응답 큐가 과부하되어(App Server Transport Overflow) 메시지를 계속 버리고 있고, 동시에 플러그인 설정 경고가 반복되는 상황이 계속되고 있는데이 부분을 고쳐줘",
+  "goal": "pipeline safety smoke",
   "target_cwd": "C:\\Users\\qhtm0\\Desktop\\harness",
-  "updated_at": "2026-05-21T19:12:39",
+  "updated_at": "2026-05-21T19:41:59",
   "ouroboros_exit_code": 1,
   "seed_path": null,
-  "omx_prompt_path": "C:\\Users\\qhtm0\\Desktop\\harness\\.omx_ouro_pipeline\\prompts\\20260521-191239-omx-prompt.md",
+  "omx_prompt_path": "C:\\Users\\qhtm0\\Desktop\\harness\\.omx_ouro_pipeline\\prompts\\20260521-194159-omx-prompt.md",
   "exit_code": 0,
-  "codex_handoff_path": "C:\\Users\\qhtm0\\Desktop\\harness\\.omx_ouro_pipeline\\codex_handoffs\\20260521-191239-codex-handoff.md"
+  "codex_handoff_path": "C:\\Users\\qhtm0\\Desktop\\harness\\.omx_ouro_pipeline\\codex_handoffs\\20260521-194159-codex-handoff.md"
 }
