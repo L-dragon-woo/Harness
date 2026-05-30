@@ -30,9 +30,22 @@ def run_git(args, cwd):
     return run(["git"] + args, cwd=cwd)
 
 
+def get_env(key):
+    """Read env var, falling back to Windows User-level registry if missing."""
+    val = os.environ.get(key, "")
+    if not val and sys.platform == "win32":
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as k:
+                val, _ = winreg.QueryValueEx(k, key)
+        except Exception:
+            pass
+    return val
+
+
 def run_gh(args, cwd):
     env = os.environ.copy()
-    token = env.get("GH_TOKEN", "")
+    token = get_env("GH_TOKEN")
     if not token:
         print("[ERROR] GH_TOKEN env var is missing.")
         sys.exit(1)
@@ -51,7 +64,7 @@ def run_gh(args, cwd):
 def analyze_diff(diff, stat):
     import anthropic
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key = get_env("ANTHROPIC_API_KEY")
     if not api_key:
         print("[ERROR] ANTHROPIC_API_KEY env var is missing.")
         sys.exit(1)
