@@ -186,7 +186,7 @@ def _run_workflow(repo_root):
 
     # Merge
     print("\n[6/6] Merging PR...")
-    run_gh(["pr", "merge", branch_name, "--merge", "--delete-branch", "--yes"], cwd=repo_root)
+    run_gh(["pr", "merge", branch_name, "--merge", "--delete-branch"], cwd=repo_root)
 
     # Back to main
     run_git(["checkout", "main"], cwd=repo_root)
