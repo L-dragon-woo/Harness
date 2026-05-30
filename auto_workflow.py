@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Auto workflow: diff 분석 -> GitHub Issue -> Commit -> PR -> Merge
-트리거: 저장소 루트에 .auto-workflow 파일 생성
+Auto workflow: diff analysis -> GitHub Issue -> Commit -> PR -> Merge
+Trigger: create .auto-workflow file in any git repo root
+Works with any repo via Claude Code Stop Hook (reads cwd from stdin JSON).
 """
 import subprocess
 import sys
@@ -11,7 +12,6 @@ import re
 from pathlib import Path
 
 GH = r"C:\Program Files\GitHub CLI\gh.exe"
-PYTHON = sys.executable
 
 
 def run(args, cwd=None, check=True):
@@ -32,7 +32,11 @@ def run_git(args, cwd):
 
 def run_gh(args, cwd):
     env = os.environ.copy()
-    env["GH_TOKEN"] = env.get("GH_TOKEN", "")
+    token = env.get("GH_TOKEN", "")
+    if not token:
+        print("[ERROR] GH_TOKEN env var is missing.")
+        sys.exit(1)
+    env["GH_TOKEN"] = token
     result = subprocess.run(
         [GH] + args, capture_output=True, cwd=cwd,
         encoding="utf-8", errors="replace", env=env
@@ -79,7 +83,6 @@ Return this exact JSON structure:
     )
 
     content = msg.content[0].text.strip()
-    # Strip code fences if present
     match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
     if match:
         content = match.group(1)
@@ -87,21 +90,33 @@ Return this exact JSON structure:
     return json.loads(content)
 
 
-def main():
-    # Repo root
+def get_repo_root_from_hook():
+    """Read cwd from Claude Code Stop Hook stdin JSON, find git root."""
     try:
-        repo_root = run(["git", "rev-parse", "--show-toplevel"])
+        raw = sys.stdin.read()
+        hook_data = json.loads(raw) if raw.strip() else {}
+        cwd = hook_data.get("cwd", os.getcwd())
+    except (json.JSONDecodeError, OSError):
+        cwd = os.getcwd()
+
+    try:
+        repo_root = run(["git", "rev-parse", "--show-toplevel"], cwd=cwd)
+        return repo_root
     except SystemExit:
+        return None
+
+
+def main():
+    repo_root = get_repo_root_from_hook()
+    if not repo_root:
         sys.exit(0)
 
     flag_file = Path(repo_root) / ".auto-workflow"
     lock_file = Path(repo_root) / ".auto-workflow.lock"
 
-    # Only run when flag exists
     if not flag_file.exists():
         sys.exit(0)
 
-    # Prevent concurrent runs
     if lock_file.exists():
         print("[SKIP] Already running.")
         sys.exit(0)
@@ -116,20 +131,17 @@ def main():
 
 
 def _run_workflow(repo_root):
-    print("\n=== Auto Workflow Start ===\n")
+    print(f"\n=== Auto Workflow Start ({repo_root}) ===\n")
 
-    # Collect diff
     staged = run_git(["diff", "--staged"], cwd=repo_root)
     unstaged = run_git(["diff"], cwd=repo_root)
     diff = staged if staged else unstaged
 
     if not diff:
-        # Check untracked files
         untracked = run_git(["status", "--short"], cwd=repo_root)
         if not untracked:
             print("[INFO] No changes detected.")
             return
-        # Stage everything if only untracked
         run_git(["add", "-A"], cwd=repo_root)
         staged = run_git(["diff", "--staged"], cwd=repo_root)
         diff = staged
@@ -138,7 +150,6 @@ def _run_workflow(repo_root):
     if not stat:
         stat = run_git(["diff", "--stat", "--staged"], cwd=repo_root)
 
-    # Analyze
     print("[1/6] Analyzing diff with Claude Haiku...")
     data = analyze_diff(diff, stat)
 
@@ -153,7 +164,6 @@ def _run_workflow(repo_root):
     print(f"      Branch: {branch_name}")
     print(f"      Commit: {commit_message}")
 
-    # GitHub Issue
     print("\n[2/6] Creating GitHub Issue...")
     issue_out = run_gh(
         ["issue", "create", "--title", issue_title, "--body", issue_body],
@@ -163,18 +173,14 @@ def _run_workflow(repo_root):
     issue_num = issue_url.rstrip("/").split("/")[-1]
     print(f"      {issue_url}")
 
-    # Branch
     print(f"\n[3/6] Creating branch: {branch_name}")
-    current_branch = run_git(["branch", "--show-current"], cwd=repo_root)
     run_git(["checkout", "-b", branch_name], cwd=repo_root)
 
-    # Commit
     print("\n[4/6] Committing...")
     run_git(["add", "-A"], cwd=repo_root)
     run_git(["commit", "-m", commit_message], cwd=repo_root)
     run_git(["push", "origin", branch_name], cwd=repo_root)
 
-    # PR
     print("\n[5/6] Creating PR...")
     full_pr_body = f"{pr_body}\n\nCloses #{issue_num}"
     pr_out = run_gh(
@@ -184,11 +190,9 @@ def _run_workflow(repo_root):
     pr_url = pr_out.strip().splitlines()[-1].strip()
     print(f"      {pr_url}")
 
-    # Merge
     print("\n[6/6] Merging PR...")
     run_gh(["pr", "merge", branch_name, "--merge", "--delete-branch"], cwd=repo_root)
 
-    # Back to main
     run_git(["checkout", "main"], cwd=repo_root)
     run_git(["pull", "origin", "main"], cwd=repo_root)
 
